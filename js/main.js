@@ -52,42 +52,62 @@ Tillägg i HTML?
 
 */
 
-// const BASE_URL = "https://fathomless-shelf-54969.herokuapp.com";
+const BASE_URL = "https://fathomless-shelf-54969.herokuapp.com";
 
-// async function getKey() {
-//   const response = await fetch(`${BASE_URL}/keys`, { method: "POST" });
-//   const data = await response.json();
-//   console.log(data);
+async function getKey() {
+  const response = await fetch(`${BASE_URL}/keys`, { method: "POST" });
+  const data = await response.json();
+  console.log(data);
 
-//   return data.key;
-// }
+  return data.key;
+}
 
-// async function getPlanets() {
-//   const key = await getKey();
-//   const response = await fetch(`${BASE_URL}/bodies`, {
-//     headers: {
-//       "x-zocom": key,
-//     },
-//   });
-//   const data = await response.json();
-//   console.log(data);
-// }
+async function getPlanets() {
+  const key = await getKey();
+  const response = await fetch(`${BASE_URL}/bodies`, {
+    headers: {
+      "x-zocom": key,
+    },
+  });
+  const data = await response.json();
+  console.log(data);
+}
 
-// getPlanets();
+getPlanets();
 
 // Header Content --------------------------------
+
 const h1HeaderContainer = document.createElement("h1");
 h1HeaderContainer.className = "h1-header-container";
 h1HeaderContainer.textContent = "solsystemet";
 headerContainer.appendChild(h1HeaderContainer);
 
-const h3MainContainer = document.createElement("h3");
-h3MainContainer.className = "h3-header-container";
-h3MainContainer.textContent = "solaris";
-headerContainer.appendChild(h3MainContainer);
+const h3HeaderContainer = document.createElement("h3");
+h3HeaderContainer.className = "h3-header-container";
+h3HeaderContainer.textContent = "solaris";
+headerContainer.appendChild(h3HeaderContainer);
 // Main Content ----------------------------
 
+const articleMainContainer = document.createElement("article");
+articleMainContainer.className = "article-main-container-sun";
+mainContainer.appendChild(articleMainContainer);
+
+const sectionPlanetContainer = document.createElement("section");
+sectionPlanetContainer.className = "section-planet-container";
+mainContainer.appendChild(sectionPlanetContainer);
+
+// Planet Contet -------------------------------
+
+const merkuriusPlanetContainer = document.createElement("article");
+merkuriusPlanetContainer.className = "article-planet-Merkurius";
+sectionPlanetContainer.appendChild(merkuriusPlanetContainer);
+
+const venusPlanetContainer = document.createElement("article");
+venusPlanetContainer.className = "article-planet-venus";
+sectionPlanetContainer.appendChild(venusPlanetContainer);
+
 // Footer Content ------------------------------
+
 const logoFooterContainer = document.createElement("img");
 logoFooterContainer.className = "img-footer-container";
 logoFooterContainer.src = "/css/img/vector.png";

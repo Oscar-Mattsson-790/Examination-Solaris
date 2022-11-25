@@ -11,6 +11,10 @@ body {
   width: 100vw;
   height: 100vh;
   position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .header-container {
@@ -63,4 +67,39 @@ body {
 
 .img-footer-container {
   height: 20px;
+}
+
+.article-main-container-sun {
+  position: absolute;
+  background: #ffd029;
+  box-shadow: 0px 0px 250px rgba(255, 208, 41, 0.2);
+  border-top-right-radius: 100rem;
+  border-bottom-right-radius: 100rem;
+  width: 1278px;
+  height: 1278px;
+  left: -1160px;
+  top: -140px;
+}
+
+.section-planet-container {
+  width: 1000px;
+  height: 200px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.article-planet-Merkurius {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.article-planet-venus {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: black;
 }

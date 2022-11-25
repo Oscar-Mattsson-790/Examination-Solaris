@@ -81,25 +81,68 @@ body {
   top: -140px;
 }
 
-.section-planet-container {
-  width: 1000px;
+.planet-container {
+  width: 1750px;
   height: 200px;
-  background-color: white;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
-.article-planet-Merkurius {
-  width: 100px;
-  height: 100px;
+.merkurius {
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background-color: black;
+  background-color: #888888;
 }
 
-.article-planet-venus {
-  width: 100px;
-  height: 100px;
+.venus {
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  background-color: black;
+  background-color: #e7cdcd;
+}
+
+.jorden {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #428ed4;
+}
+
+.mars {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #ef5f5f;
+}
+
+.jupiter {
+  width: 188px;
+  height: 188px;
+  border-radius: 50%;
+  background-color: #e29468;
+}
+
+.saturnus {
+  width: 144px;
+  height: 144px;
+  border-radius: 50%;
+  background-color: #c7aa72;
+  background-image: url(/css/img/Ellipse\ 10.png);
+  background-repeat: no-repeat;
+}
+
+.uranus {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background-color: #c9d4f1;
+}
+
+.neptunus {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background-color: #7a91a7;
 }

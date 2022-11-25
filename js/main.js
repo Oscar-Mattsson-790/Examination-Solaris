@@ -2,7 +2,6 @@
 
 // Selected Elements
 const body = document.querySelector("body");
-console.log(body);
 
 // Create containers and set class
 
@@ -57,7 +56,7 @@ const BASE_URL = "https://fathomless-shelf-54969.herokuapp.com";
 async function getKey() {
   const response = await fetch(`${BASE_URL}/keys`, { method: "POST" });
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
 
   return data.key;
 }
@@ -70,10 +69,8 @@ async function getPlanets() {
     },
   });
   const data = await response.json();
-  console.log(data);
+  return data;
 }
-
-getPlanets();
 
 // Header Content --------------------------------
 
@@ -92,19 +89,22 @@ const articleMainContainer = document.createElement("article");
 articleMainContainer.className = "article-main-container-sun";
 mainContainer.appendChild(articleMainContainer);
 
-const sectionPlanetContainer = document.createElement("section");
-sectionPlanetContainer.className = "section-planet-container";
-mainContainer.appendChild(sectionPlanetContainer);
+const planetContainer = document.createElement("section");
+planetContainer.className = "planet-container";
+mainContainer.appendChild(planetContainer);
 
-// Planet Contet -------------------------------
+// Planet Content -------------------------------
 
-const merkuriusPlanetContainer = document.createElement("article");
-merkuriusPlanetContainer.className = "article-planet-Merkurius";
-sectionPlanetContainer.appendChild(merkuriusPlanetContainer);
-
-const venusPlanetContainer = document.createElement("article");
-venusPlanetContainer.className = "article-planet-venus";
-sectionPlanetContainer.appendChild(venusPlanetContainer);
+getPlanets().then((data) => {
+  for (let planet of data.bodies) {
+    if (planet.name.toLowerCase() !== "solen") {
+      const planetElem = document.createElement("article");
+      planetElem.className = planet.name.toLowerCase();
+      planetContainer.appendChild(planetElem);
+    }
+    console.log(planet.name);
+  }
+});
 
 // Footer Content ------------------------------
 

@@ -1,11 +1,29 @@
 "use strict";
 
+// Selected Elements
+const body = document.querySelector("body");
+console.log(body);
+
+// Create containers and set class
+
+const mainContainer = document.createElement("main");
+mainContainer.className = "main-container";
+body.appendChild(mainContainer);
+
+const headerContainer = document.createElement("header");
+headerContainer.className = "header-container";
+mainContainer.appendChild(headerContainer);
+
+const footerContainer = document.createElement("footer");
+footerContainer.className = "footer-container";
+mainContainer.appendChild(footerContainer);
+
 /*
 TODO LIST: 
 
 1. Skapa upp html element för varje planet
 2. Skapa add event listener med "click" på varje planet
-3. Skriv ut datan för varje planet vid "click":et
+3. Hämta data och Skriv ut för varje planet vid "click":et
 4. Lägg till HTML img-fil för varje planet
 
 // Swamp VY mellan de sida 1 och 2?
@@ -34,25 +52,43 @@ Tillägg i HTML?
 
 */
 
-const BASE_URL = "https://fathomless-shelf-54969.herokuapp.com";
+// const BASE_URL = "https://fathomless-shelf-54969.herokuapp.com";
 
-async function getKey() {
-  const response = await fetch(`${BASE_URL}/keys`, { method: "POST" });
-  const data = await response.json();
-  console.log(data);
+// async function getKey() {
+//   const response = await fetch(`${BASE_URL}/keys`, { method: "POST" });
+//   const data = await response.json();
+//   console.log(data);
 
-  return data.key;
-}
+//   return data.key;
+// }
 
-async function getPlanets() {
-  const key = await getKey();
-  const response = await fetch(`${BASE_URL}/bodies`, {
-    headers: {
-      "x-zocom": key,
-    },
-  });
-  const data = await response.json();
-  console.log(data);
-}
+// async function getPlanets() {
+//   const key = await getKey();
+//   const response = await fetch(`${BASE_URL}/bodies`, {
+//     headers: {
+//       "x-zocom": key,
+//     },
+//   });
+//   const data = await response.json();
+//   console.log(data);
+// }
 
-getPlanets();
+// getPlanets();
+
+// Header Content --------------------------------
+const h1HeaderContainer = document.createElement("h1");
+h1HeaderContainer.className = "h1-header-container";
+h1HeaderContainer.textContent = "solsystemet";
+headerContainer.appendChild(h1HeaderContainer);
+
+const h3MainContainer = document.createElement("h3");
+h3MainContainer.className = "h3-header-container";
+h3MainContainer.textContent = "solaris";
+headerContainer.appendChild(h3MainContainer);
+// Main Content ----------------------------
+
+// Footer Content ------------------------------
+const logoFooterContainer = document.createElement("img");
+logoFooterContainer.className = "img-footer-container";
+logoFooterContainer.src = "/css/img/vector.png";
+footerContainer.appendChild(logoFooterContainer);

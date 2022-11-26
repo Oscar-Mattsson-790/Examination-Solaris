@@ -17,39 +17,9 @@ const footerContainer = document.createElement("footer");
 footerContainer.className = "footer-container";
 mainContainer.appendChild(footerContainer);
 
-/*
-TODO LIST: 
-
-1. Skapa upp html element för varje planet
-2. Skapa add event listener med "click" på varje planet
-3. Hämta data och Skriv ut för varje planet vid "click":et
-4. Lägg till HTML img-fil för varje planet
-
-// Swamp VY mellan de sida 1 och 2?
-
-
-5. Hämta och skriv ut H1 och H2
-6. Hämta och skriv ut P - texten
-7. Hämta och skriv ut H4 
-  -OMKRETS med text 
-  -KM FRÅN SOLEN med text
-  -MAX TEMPERATUR med text
-  -MIN TEMPERATUR med text
-
-8. Lägg till en "gå tillbacka knapp" på Blåa solen
-
-
-STYLE SIDA med CSS
-
-1. Olika bakgrunds bilder på sidan
-2. Flexbok för justering av planeterna
-3. Gör en Div för solen - ändra färg via Javascript
-
-Tillägg i HTML? 
-
-1. Gör en div för solen på vänster sida
-
-*/
+const planetInfoContainer = document.createElement("div");
+planetInfoContainer.className = "planet-info-container";
+mainContainer.appendChild(planetInfoContainer);
 
 const BASE_URL = "https://fathomless-shelf-54969.herokuapp.com";
 
@@ -69,7 +39,28 @@ async function getPlanets() {
     },
   });
   const data = await response.json();
+  // console.log(data);
   return data;
+}
+
+// Functions
+function handleClick(event) {
+  headerContainer.style.display = "none";
+  planetContainer.style.display = "none";
+  sun.style.backgroundColor = "#428ED4";
+
+  getPlanets().then((data) => {
+    console.log(data.bodies);
+    data.bodies.forEach((planet) => {
+      console.log(planet.id, event.target.id);
+      if (planet.id == event.target.id) {
+        console.log(planet);
+      }
+      console.log(planet.id);
+    });
+  });
+
+  console.log("CLICK ON: ", event.target.className, event.target.id);
 }
 
 // Header Content --------------------------------
@@ -85,9 +76,11 @@ h3HeaderContainer.textContent = "solaris";
 headerContainer.appendChild(h3HeaderContainer);
 // Main Content ----------------------------
 
-const articleMainContainer = document.createElement("article");
-articleMainContainer.className = "article-main-container-sun";
-mainContainer.appendChild(articleMainContainer);
+const sun = document.createElement("article");
+sun.setAttribute("id", "0");
+sun.className = "sun";
+sun.addEventListener("click", handleClick);
+mainContainer.appendChild(sun);
 
 const planetContainer = document.createElement("section");
 planetContainer.className = "planet-container";
@@ -96,14 +89,31 @@ mainContainer.appendChild(planetContainer);
 // Planet Content -------------------------------
 
 getPlanets().then((data) => {
-  for (let planet of data.bodies) {
-    if (planet.name.toLowerCase() !== "solen") {
+  data.bodies.forEach((planet, index) => {
+    if (
+      planet.name.toLowerCase() !== "solen" &&
+      planet.name.toLowerCase() !== "saturnus"
+    ) {
       const planetElem = document.createElement("article");
+      planetElem.setAttribute("id", index);
       planetElem.className = planet.name.toLowerCase();
+      planetElem.addEventListener("click", handleClick);
+      planetContainer.appendChild(planetElem);
+    }
+    if (planet.name.toLowerCase() === "saturnus") {
+      const planetElem = document.createElement("article");
+      const saturnusRing = document.createElement("img");
+      saturnusRing.src = "/css/img/Ellipse 10.png";
+      saturnusRing.setAttribute("id", "ring");
+      saturnusRing.className = "saturnus-ring";
+      planetElem.setAttribute("id", index);
+      planetElem.className = planet.name.toLowerCase();
+      planetElem.addEventListener("click", handleClick);
+      planetElem.appendChild(saturnusRing);
       planetContainer.appendChild(planetElem);
     }
     console.log(planet.name);
-  }
+  });
 });
 
 // Footer Content ------------------------------

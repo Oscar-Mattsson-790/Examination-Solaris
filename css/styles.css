@@ -6,6 +6,10 @@ body {
   margin: 0px;
 }
 
+:hover article {
+  cursor: pointer;
+}
+
 .main-container {
   background: linear-gradient(90deg, #0c164d 0%, #190b22 100%);
   width: 100vw;
@@ -25,6 +29,7 @@ body {
   flex-direction: column;
   align-items: flex-end;
   gap: 16px;
+  display: none;
 }
 
 .footer-container {
@@ -69,7 +74,7 @@ body {
   height: 20px;
 }
 
-.article-main-container-sun {
+.sun {
   position: absolute;
   background: #ffd029;
   box-shadow: 0px 0px 250px rgba(255, 208, 41, 0.2);
@@ -82,11 +87,20 @@ body {
 }
 
 .planet-container {
-  width: 1750px;
+  width: 1300px;
   height: 200px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-left: 100px;
+  display: none;
+}
+
+.planet-info-container {
+  background-color: white;
+  width: 900px;
+  height: 700px;
+  display: flex;
 }
 
 .merkurius {
@@ -129,8 +143,13 @@ body {
   height: 144px;
   border-radius: 50%;
   background-color: #c7aa72;
-  background-image: url(/css/img/Ellipse\ 10.png);
-  background-repeat: no-repeat;
+  position: relative;
+}
+
+.saturnus-ring {
+  position: absolute;
+  top: 15px;
+  left: -18px;
 }
 
 .uranus {

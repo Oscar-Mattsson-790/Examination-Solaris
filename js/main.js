@@ -76,9 +76,7 @@ const planetsColors = [
   "#7a91a7",
 ];
 
-// Selected Elements
-
-// Create containers and set class
+// Fetch Data ------------------------------
 
 const BASE_URL = "https://fathomless-shelf-54969.herokuapp.com";
 
@@ -102,7 +100,8 @@ async function getPlanets() {
   return data;
 }
 
-// HandleClick function - Event
+// HandleClick function - Event ----------------------------
+
 function handleClick(event) {
   console.log("click på staturnus ring", event.target);
   console.log("click event", event.target.style.backgroundColor);

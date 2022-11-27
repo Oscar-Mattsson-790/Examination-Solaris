@@ -1,9 +1,55 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora&family=Secular+One&display=swap");
-
 @import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&family=Secular+One&display=swap");
 
 body {
   margin: 0px;
+}
+
+h1 {
+  color: white;
+  text-transform: uppercase;
+  padding-bottom: 15px;
+  margin-bottom: 0px;
+  font-family: "Lora", serif;
+  font-family: "Secular One", sans-serif;
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 100%;
+  letter-spacing: 0.09em;
+}
+
+h3 {
+  color: #ffd029;
+  text-transform: uppercase;
+  margin: 0px;
+  font-family: "Lora", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0.6em;
+}
+
+h4 {
+  color: white;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0.09em;
+}
+
+p {
+  font-family: "Roboto Condensed", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 170%;
+  letter-spacing: 0.16em;
+  color: #ffffff;
+  margin-top: 0px;
 }
 
 :hover article {
@@ -29,7 +75,7 @@ body {
   flex-direction: column;
   align-items: flex-end;
   gap: 16px;
-  display: none;
+  /* display: none; */
 }
 
 .footer-container {
@@ -93,56 +139,64 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-left: 100px;
-  display: none;
+  /* display: none; */
 }
 
 .planet-info-container {
-  background-color: white;
-  width: 900px;
+  width: 700px;
   height: 700px;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: none;
+  margin-bottom: 200px;
+  padding-top: 6rem;
+  padding-bottom: 7rem;
+}
+
+.wrap-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10rem;
+  margin-top: 20px;
 }
 
 .merkurius {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background-color: #888888;
 }
 
 .venus {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background-color: #e7cdcd;
 }
 
 .jorden {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background-color: #428ed4;
 }
 
 .mars {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background-color: #ef5f5f;
 }
 
 .jupiter {
   width: 188px;
   height: 188px;
   border-radius: 50%;
-  background-color: #e29468;
 }
 
 .saturnus {
   width: 144px;
   height: 144px;
   border-radius: 50%;
-  background-color: #c7aa72;
   position: relative;
 }
 
@@ -156,12 +210,33 @@ body {
   width: 66px;
   height: 66px;
   border-radius: 50%;
-  background-color: #c9d4f1;
 }
 
 .neptunus {
   width: 66px;
   height: 66px;
   border-radius: 50%;
-  background-color: #7a91a7;
+}
+
+.text-about-planet {
+  color: white;
+  font-family: "Roboto Condensed", sans-serif;
+  font-style: normal;
+  font-weight: lighter;
+  font-size: 14px;
+  line-height: 170%;
+  margin-top: 40px;
+}
+
+.text-line,
+.text-line2 {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 30px;
+  width: 100%;
+  border-radius: 2px;
+}
+
+.text-container-third {
+  max-width: 100%;
+  word-wrap: break-word;
 }

@@ -1,5 +1,7 @@
 "use strict";
 
+// Här körs alla funktioner för sidan samt hämtning av Datan
+
 const body = document.querySelector("body");
 
 const mainContainer = document.createElement("main");
@@ -76,29 +78,14 @@ const planetsColors = [
   "#7a91a7",
 ];
 
-// Fetch Data ------------------------------
+const returnToHomePageButton = document.createElement("button");
+returnToHomePageButton.textContent = "⤺";
+textContainerThird.appendChild(returnToHomePageButton);
+returnToHomePageButton.addEventListener("click", () => {
+  return location.reload();
+});
 
-const BASE_URL = "https://fathomless-shelf-54969.herokuapp.com";
-
-async function getKey() {
-  const response = await fetch(`${BASE_URL}/keys`, { method: "POST" });
-  const data = await response.json();
-  // console.log(data);
-
-  return data.key;
-}
-
-async function getPlanets() {
-  const key = await getKey();
-  const response = await fetch(`${BASE_URL}/bodies`, {
-    headers: {
-      "x-zocom": key,
-    },
-  });
-  const data = await response.json();
-  console.log(data);
-  return data;
-}
+import { getKey, getPlanets } from "./modules/api.js";
 
 // HandleClick function - Event ----------------------------
 
@@ -106,7 +93,6 @@ function handleClick(event) {
   sun.style.backgroundColor = event.target.style.backgroundColor;
   headerContainer.style.display = "none";
   planetContainer.style.display = "none";
-  planetInfoContainer.style.display = "block";
   mainContainer.style.backgroundImage =
     "url('https://www.psdgraphics.com/file/night-sky-stars.jpg')";
   mainContainer.style.backgroundRepeat = "no-repeat";
@@ -115,14 +101,6 @@ function handleClick(event) {
     data.bodies.forEach((planet) => {
       let planetId = event.target.id;
       if (planet.id == planetId) {
-        // Return button
-        const returnToHomePageButton = document.createElement("button");
-        returnToHomePageButton.textContent = "⟲";
-        textContainerThird.appendChild(returnToHomePageButton);
-        returnToHomePageButton.addEventListener("click", () => {
-          console.log("click på button: ");
-        });
-
         h4ElemMoon.textContent = "månar";
         h4TextMoon.textContent = `${data.bodies[Number(planetId)].moons}`;
 
@@ -162,6 +140,11 @@ function handleClick(event) {
         textLine.className = "text-line";
         textLine2.className = "text-line2";
         textAboutPlanet.className = "text-about-planet";
+
+        // Display Elements
+        planetInfoContainer.style.display = "block";
+        // Return button
+        returnToHomePageButton.style.display = "block";
       }
     });
   });

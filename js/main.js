@@ -103,8 +103,6 @@ async function getPlanets() {
 // HandleClick function - Event ----------------------------
 
 function handleClick(event) {
-  console.log("click på staturnus ring", event.target);
-  console.log("click event", event.target.style.backgroundColor);
   sun.style.backgroundColor = event.target.style.backgroundColor;
   headerContainer.style.display = "none";
   planetContainer.style.display = "none";
@@ -117,23 +115,31 @@ function handleClick(event) {
     data.bodies.forEach((planet) => {
       let planetId = event.target.id;
       if (planet.id == planetId) {
+        // Return button
+        const returnToHomePageButton = document.createElement("button");
+        returnToHomePageButton.textContent = "⟲";
+        textContainerThird.appendChild(returnToHomePageButton);
+        returnToHomePageButton.addEventListener("click", () => {
+          console.log("click på button: ");
+        });
+
         h4ElemMoon.textContent = "månar";
         h4TextMoon.textContent = `${data.bodies[Number(planetId)].moons}`;
 
         h4ElemMinTemprature.textContent = "min temperatur";
         h4TextMinTemprature.textContent = `${
           data.bodies[Number(planetId)].temp.night
-        } C`;
+        } °C`;
 
         h4ElemDistance.textContent = "km från solen";
         h4TextDistance.textContent = `${
           data.bodies[Number(planetId)].distance
-        }`;
+        } km`;
 
         h4ElemMaxTemprature.textContent = "max temperatur";
         h4TextMaxTemprature.textContent = `${
           data.bodies[Number(planetId)].temp.day
-        } C`;
+        } °C`;
 
         textAboutPlanet.textContent = `${data.bodies[Number(planetId)].desc}`;
         h1ElemNameOfPlanet.textContent = `${
@@ -214,7 +220,6 @@ getPlanets().then((data) => {
       planetElem.appendChild(saturnusRing);
       planetContainer.appendChild(planetElem);
     }
-    console.log(planet.name);
   });
 });
 

@@ -1,5 +1,6 @@
 "use strict";
-// Fetch Data
+
+// Fetch Data - Här hämtat API och Nyckel
 
 const BASE_URL = "https://fathomless-shelf-54969.herokuapp.com";
 
@@ -21,4 +22,4 @@ async function getPlanets() {
   return data;
 }
 
-export { getKey, getPlanets };
+export { getPlanets };

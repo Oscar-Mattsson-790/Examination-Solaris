@@ -1,9 +1,8 @@
 "use strict";
 
-// Här körs alla funktioner för sidan samt hämtning av Datan
+// Här körs alla funktioner för sidan samt skapandet av html element
 
 const body = document.querySelector("body");
-
 const mainContainer = document.createElement("main");
 mainContainer.className = "main-container";
 body.appendChild(mainContainer);
@@ -85,11 +84,17 @@ returnToHomePageButton.addEventListener("click", () => {
   return location.reload();
 });
 
-import { getKey, getPlanets } from "./modules/api.js";
+import { getPlanets } from "./modules/api.js";
 
 // HandleClick function - Event ----------------------------
 
 function handleClick(event) {
+  if (sun.className === "sun active") {
+    location.reload();
+  } else {
+    sun.classList.add("active");
+  }
+
   sun.style.backgroundColor = event.target.style.backgroundColor;
   headerContainer.style.display = "none";
   planetContainer.style.display = "none";
@@ -148,8 +153,6 @@ function handleClick(event) {
       }
     });
   });
-
-  console.log("CLICK ON: ", event.target.className, event.target.id);
 }
 
 // Header Content --------------------------------
@@ -163,7 +166,8 @@ const h3HeaderContainer = document.createElement("h3");
 h3HeaderContainer.className = "h3-header-container";
 h3HeaderContainer.textContent = "solaris";
 headerContainer.appendChild(h3HeaderContainer);
-// Main Content ----------------------------
+
+// Main Content ----------------------------------
 
 const sun = document.createElement("article");
 sun.setAttribute("id", "0");
@@ -175,7 +179,7 @@ const planetContainer = document.createElement("section");
 planetContainer.className = "planet-container";
 mainContainer.appendChild(planetContainer);
 
-// Planet Content -------------------------------
+// Planet Content --------------------------------
 
 getPlanets().then((data) => {
   data.bodies.forEach((planet, index) => {
@@ -206,7 +210,7 @@ getPlanets().then((data) => {
   });
 });
 
-// Footer Content ------------------------------
+// Footer Content --------------------------------
 
 const logoFooterContainer = document.createElement("img");
 logoFooterContainer.className = "img-footer-container";

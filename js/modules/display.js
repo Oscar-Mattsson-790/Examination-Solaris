@@ -1,3 +1,3 @@
 "use strict";
 
-// Här skapas alla html - element till sidan
+// Här displayas information om planeterna

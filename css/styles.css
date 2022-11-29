@@ -159,6 +159,7 @@ button {
   justify-content: space-between;
   align-items: center;
   margin-left: 100px;
+  transition: 2s;
 }
 
 .planet-info-container {
@@ -222,7 +223,7 @@ button {
 .saturnus-ring {
   position: absolute;
   top: 15px;
-  left: -18px;
+  left: -25px;
 }
 
 .uranus {

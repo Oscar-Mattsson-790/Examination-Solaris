@@ -1,8 +1,12 @@
 "use strict";
 
-// Här körs alla funktioner för sidan samt skapandet av html element
+// Importer
+import { getPlanets } from "./modules/api.js";
+import { fillElementWithdata, appendChilds } from "./modules/display.js";
 
+//Skapa alla element
 const body = document.querySelector("body");
+
 const mainContainer = document.createElement("main");
 mainContainer.className = "main-container";
 body.appendChild(mainContainer);
@@ -18,6 +22,26 @@ mainContainer.appendChild(footerContainer);
 const planetInfoContainer = document.createElement("section");
 planetInfoContainer.className = "planet-info-container";
 mainContainer.appendChild(planetInfoContainer);
+
+const h1HeaderContainer = document.createElement("h1");
+h1HeaderContainer.className = "h1-header-container";
+h1HeaderContainer.textContent = "solsystemet";
+
+const h3HeaderContainer = document.createElement("h3");
+h3HeaderContainer.className = "h3-header-container";
+h3HeaderContainer.textContent = "solaris";
+
+const sun = document.createElement("article");
+sun.setAttribute("id", "0");
+sun.className = "sun";
+sun.addEventListener("click", handleClick);
+
+const planetContainer = document.createElement("section");
+planetContainer.className = "planet-container";
+
+const logoFooterContainer = document.createElement("img");
+logoFooterContainer.className = "img-footer-container";
+logoFooterContainer.src = "/css/img/vector.png";
 
 const h1ElemNameOfPlanet = document.createElement("h1");
 const h3ElemNameOfPlanet = document.createElement("h3");
@@ -39,32 +63,6 @@ const textContainerThird = document.createElement("article");
 const h4ElemMoon = document.createElement("h4");
 const h4TextMoon = document.createElement("p");
 
-planetInfoContainer.appendChild(h1ElemNameOfPlanet);
-planetInfoContainer.appendChild(h3ElemNameOfPlanet);
-planetInfoContainer.appendChild(textAboutPlanet);
-planetInfoContainer.appendChild(textLine);
-planetInfoContainer.appendChild(textContainer);
-planetInfoContainer.appendChild(textContainerSecond);
-planetInfoContainer.appendChild(wrapInfo);
-planetInfoContainer.appendChild(textContainerThird);
-
-textContainer.appendChild(h4ElemCircumference);
-textContainer.appendChild(h4TextCircumference);
-textContainer.appendChild(h4ElemMaxTemprature);
-textContainer.appendChild(h4TextMaxTemprature);
-
-textContainerSecond.appendChild(h4ElemDistance);
-textContainerSecond.appendChild(h4TextDistance);
-textContainerSecond.appendChild(h4ElemMinTemprature);
-textContainerSecond.appendChild(h4TextMinTemprature);
-
-textContainerThird.appendChild(textLine2);
-textContainerThird.appendChild(h4ElemMoon);
-textContainerThird.appendChild(h4TextMoon);
-
-wrapInfo.appendChild(textContainer);
-wrapInfo.appendChild(textContainerSecond);
-
 const planetsColors = [
   "#ffd029",
   "#888888",
@@ -77,23 +75,12 @@ const planetsColors = [
   "#7a91a7",
 ];
 
-const returnToHomePageButton = document.createElement("button");
-returnToHomePageButton.textContent = "⤺";
-textContainerThird.appendChild(returnToHomePageButton);
-returnToHomePageButton.addEventListener("click", () => {
-  return location.reload();
-});
-
-import { getPlanets } from "./modules/api.js";
+// Fyller på kontainrar med element
+appendChilds();
 
 // HandleClick function - Event ----------------------------
-
 function handleClick(event) {
-  if (sun.className === "sun active") {
-    location.reload();
-  } else {
-    sun.classList.add("active");
-  }
+  let planetId = event.target.id;
 
   sun.style.backgroundColor = event.target.style.backgroundColor;
   headerContainer.style.display = "none";
@@ -102,84 +89,27 @@ function handleClick(event) {
     "url('https://www.psdgraphics.com/file/night-sky-stars.jpg')";
   mainContainer.style.backgroundRepeat = "no-repeat";
   mainContainer.style.backgroundSize = "cover";
-  getPlanets().then((data) => {
-    data.bodies.forEach((planet) => {
-      let planetId = event.target.id;
-      if (planet.id == planetId) {
-        h4ElemMoon.textContent = "månar";
-        h4TextMoon.textContent = `${data.bodies[Number(planetId)].moons}`;
 
-        h4ElemMinTemprature.textContent = "min temperatur";
-        h4TextMinTemprature.textContent = `${
-          data.bodies[Number(planetId)].temp.night
-        } °C`;
+  if (sun.className === "sun active") {
+    location.reload();
+  } else {
+    sun.classList.add("active");
+  }
 
-        h4ElemDistance.textContent = "km från solen";
-        h4TextDistance.textContent = `${
-          data.bodies[Number(planetId)].distance
-        } km`;
+  if (planetId === "ring") {
+    planetId = "6";
+    sun.style.backgroundColor = "#c7aa72";
+  }
 
-        h4ElemMaxTemprature.textContent = "max temperatur";
-        h4TextMaxTemprature.textContent = `${
-          data.bodies[Number(planetId)].temp.day
-        } °C`;
-
-        textAboutPlanet.textContent = `${data.bodies[Number(planetId)].desc}`;
-        h1ElemNameOfPlanet.textContent = `${
-          data.bodies[Number(planetId)].name
-        }`;
-
-        h3ElemNameOfPlanet.textContent = `${
-          data.bodies[Number(planetId)].latinName
-        }`;
-
-        h4ElemCircumference.textContent = "omkrets";
-        h4TextCircumference.textContent = `${
-          data.bodies[Number(planetId)].circumference
-        } km`;
-
-        wrapInfo.className = "wrap-info";
-        textContainerThird.className = "text-container-third";
-        textContainerSecond.className = "text-container-second";
-        textContainer.className = "text-container";
-        textLine.className = "text-line";
-        textLine2.className = "text-line2";
-        textAboutPlanet.className = "text-about-planet";
-
-        // Display Elements
-        planetInfoContainer.style.display = "block";
-        // Return button
-        returnToHomePageButton.style.display = "block";
-      }
-    });
-  });
+  fillElementWithdata(planetId);
 }
 
-// Header Content --------------------------------
-
-const h1HeaderContainer = document.createElement("h1");
-h1HeaderContainer.className = "h1-header-container";
-h1HeaderContainer.textContent = "solsystemet";
-headerContainer.appendChild(h1HeaderContainer);
-
-const h3HeaderContainer = document.createElement("h3");
-h3HeaderContainer.className = "h3-header-container";
-h3HeaderContainer.textContent = "solaris";
-headerContainer.appendChild(h3HeaderContainer);
-
-// Main Content ----------------------------------
-
-const sun = document.createElement("article");
-sun.setAttribute("id", "0");
-sun.className = "sun";
-sun.addEventListener("click", handleClick);
-mainContainer.appendChild(sun);
-
-const planetContainer = document.createElement("section");
-planetContainer.className = "planet-container";
-mainContainer.appendChild(planetContainer);
-
-// Planet Content --------------------------------
+const returnToHomePageButton = document.createElement("button");
+returnToHomePageButton.textContent = "⤺";
+textContainerThird.appendChild(returnToHomePageButton);
+returnToHomePageButton.addEventListener("click", () => {
+  return location.reload();
+});
 
 getPlanets().then((data) => {
   data.bodies.forEach((planet, index) => {
@@ -194,6 +124,7 @@ getPlanets().then((data) => {
       planetElem.addEventListener("click", handleClick);
       planetContainer.appendChild(planetElem);
     }
+
     if (planet.name.toLowerCase() === "saturnus") {
       const planetElem = document.createElement("article");
       const saturnusRing = document.createElement("img");
@@ -210,9 +141,34 @@ getPlanets().then((data) => {
   });
 });
 
-// Footer Content --------------------------------
-
-const logoFooterContainer = document.createElement("img");
-logoFooterContainer.className = "img-footer-container";
-logoFooterContainer.src = "/css/img/vector.png";
-footerContainer.appendChild(logoFooterContainer);
+export {
+  h4TextMoon,
+  h4ElemMoon,
+  textContainerThird,
+  textLine2,
+  wrapInfo,
+  h4TextMinTemprature,
+  h4ElemMinTemprature,
+  h4TextDistance,
+  h4ElemDistance,
+  textContainerSecond,
+  h4TextMaxTemprature,
+  h4ElemMaxTemprature,
+  h4TextCircumference,
+  h4ElemCircumference,
+  textContainer,
+  textLine,
+  textAboutPlanet,
+  h3ElemNameOfPlanet,
+  h1ElemNameOfPlanet,
+  planetInfoContainer,
+  footerContainer,
+  headerContainer,
+  mainContainer,
+  returnToHomePageButton,
+  h1HeaderContainer,
+  h3HeaderContainer,
+  sun,
+  planetContainer,
+  logoFooterContainer,
+};

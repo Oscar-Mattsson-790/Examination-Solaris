@@ -4,7 +4,7 @@
 import { getPlanets } from "./modules/api.js";
 import { fillElementWithdata, appendChilds } from "./modules/display.js";
 
-//Skapa alla element
+//Skapar alla element
 const body = document.querySelector("body");
 
 const mainContainer = document.createElement("main");
@@ -78,7 +78,7 @@ const planetsColors = [
 // Fyller på container med element
 appendChilds();
 
-// HandleClick function - Event ----------------------------
+// HandleClick function - Event
 function handleClick(event) {
   let planetId = event.target.id;
 

@@ -75,7 +75,7 @@ const planetsColors = [
   "#7a91a7",
 ];
 
-// Fyller på kontainrar med element
+// Fyller på container med element
 appendChilds();
 
 // HandleClick function - Event ----------------------------

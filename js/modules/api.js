@@ -1,6 +1,6 @@
 "use strict";
 
-// Fetch Data - Här hämtat API och Nyckel
+// Fetch Data - Här hämtar API och nyckel
 
 const BASE_URL = "https://fathomless-shelf-54969.herokuapp.com";
 

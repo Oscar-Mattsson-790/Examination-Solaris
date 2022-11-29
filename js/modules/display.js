@@ -1,6 +1,6 @@
 "use strict";
 
-// Här displayas information om planeterna
+// Här fylls information om planeterna
 
 import { getPlanets } from "./api.js";
 

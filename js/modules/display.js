@@ -75,7 +75,9 @@ function fillElementWithdata(planetId) {
     data.bodies.forEach((planet) => {
       if (planet.id == planetId) {
         h4ElemMoon.textContent = "månar";
-        h4TextMoon.textContent = `${data.bodies[Number(planetId)].moons}`;
+        h4TextMoon.textContent = `${data.bodies[Number(planetId)].moons.join(
+          ", "
+        )}`;
 
         h4ElemMinTemprature.textContent = "min temperatur";
         h4TextMinTemprature.textContent = `${

@@ -172,5 +172,3 @@ export {
   planetContainer,
   logoFooterContainer,
 };
-
-ss;

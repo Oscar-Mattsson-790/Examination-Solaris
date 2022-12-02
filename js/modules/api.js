@@ -8,7 +8,7 @@ const BASE_URL =
 async function getKey() {
   const response = await fetch(`${BASE_URL}/keys`); // Ta bort { method: POST } här
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
 
   return data.key;
 }

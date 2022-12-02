@@ -111,8 +111,10 @@ returnToHomePageButton.addEventListener("click", () => {
   return location.reload();
 });
 
+// Då något strula med API så fick jag ändra i forEach loop:en tidigare "data.bodies" till "data"
 getPlanets().then((data) => {
-  data.bodies.forEach((planet, index) => {
+  console.log(data);
+  data.forEach((planet, index) => {
     if (
       planet.name.toLowerCase() !== "solen" &&
       planet.name.toLowerCase() !== "saturnus"

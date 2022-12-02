@@ -70,42 +70,35 @@ function appendChilds() {
   wrapInfo.appendChild(textContainerSecond);
 }
 
+// Då något strula med API så fick jag byta i forEach loop:en ut tidigare "data.bodies" till bara "data"
 function fillElementWithdata(planetId) {
   getPlanets().then((data) => {
-    data.bodies.forEach((planet) => {
+    data.forEach((planet) => {
       if (planet.id == planetId) {
         h4ElemMoon.textContent = "månar";
-        h4TextMoon.textContent = `${data.bodies[Number(planetId)].moons.join(
-          ", "
-        )}`;
+        h4TextMoon.textContent = `${data[Number(planetId)].moons.join(", ")}`;
 
         h4ElemMinTemprature.textContent = "min temperatur";
         h4TextMinTemprature.textContent = `${
-          data.bodies[Number(planetId)].temp.night
+          data[Number(planetId)].temp.night
         } °C`;
 
         h4ElemDistance.textContent = "km från solen";
-        h4TextDistance.textContent = `${
-          data.bodies[Number(planetId)].distance
-        } km`;
+        h4TextDistance.textContent = `${data[Number(planetId)].distance} km`;
 
         h4ElemMaxTemprature.textContent = "max temperatur";
         h4TextMaxTemprature.textContent = `${
-          data.bodies[Number(planetId)].temp.day
+          data[Number(planetId)].temp.day
         } °C`;
 
-        textAboutPlanet.textContent = `${data.bodies[Number(planetId)].desc}`;
-        h1ElemNameOfPlanet.textContent = `${
-          data.bodies[Number(planetId)].name
-        }`;
+        textAboutPlanet.textContent = `${data[Number(planetId)].desc}`;
+        h1ElemNameOfPlanet.textContent = `${data[Number(planetId)].name}`;
 
-        h3ElemNameOfPlanet.textContent = `${
-          data.bodies[Number(planetId)].latinName
-        }`;
+        h3ElemNameOfPlanet.textContent = `${data[Number(planetId)].latinName}`;
 
         h4ElemCircumference.textContent = "omkrets";
         h4TextCircumference.textContent = `${
-          data.bodies[Number(planetId)].circumference
+          data[Number(planetId)].circumference
         } km`;
 
         wrapInfo.className = "wrap-info";

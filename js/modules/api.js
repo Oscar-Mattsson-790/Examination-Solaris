@@ -13,6 +13,8 @@ async function getKey() {
   return data.key;
 }
 
+// Något strulande med denna API  ---
+
 // const BASE_URL = "https://fathomless-shelf-54969.herokuapp.com";
 
 // async function getKey() {
